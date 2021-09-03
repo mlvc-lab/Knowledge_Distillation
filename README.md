@@ -54,7 +54,7 @@ python3 ./train.py \
 ```
 python3 ./distill.py \
  --type cifar100 \
- --teacher wideresnet \
+ --teacher resnet \
  --student resnet \
  --depth 110 \
  --tn 1 \
