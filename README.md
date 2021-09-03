@@ -22,7 +22,7 @@ This repository intergrated various Knowledge Distillation methods. This impleme
 - CIFAR10, CIFAR100
 
 ## Model
-- ResNet, WideResNet
+- ResNet
 
 ## Start Distillation
 ### Requirements
@@ -35,40 +35,30 @@ This repository intergrated various Knowledge Distillation methods. This impleme
 - type : dataset type (cifar10, cifar100)
 - model : network type (resnet, wideresnet)
 - depth : depth for resnet and wideresnet (teacher or baseline), sdepth : same for student network
-- wfactor : wide factor for wideresnet (teacher or baseline), swfactor : student network
 - tn : index number of the multiple trainings (teacher or baseline), stn : same for student network
 - distype : type of distillation method (KD, FN, NST, AT, RKD, SP, OD)
 
 ### Baseline Training for teacher network or baseline student 
-- ex) dataset : cifar100, model: resnet32, index of the number of trainings: 1
+- ex) dataset : cifar100, model: resnet110, index of the number of trainings: 1
 ```
 python3 ./train.py \
  --type cifar100 \
  --model resnet \
- --depth 32 \
+ --depth 110 \
  --tn 1 \
 ```
-- ex) dataset : cifar100, model: wideresnet16_4, index of the number of trainings: 1
-```
-python3 ./train.py \
- --type cifar100 \
- --model wideresnet \
- --depth 16 \
- --wfactor 4 \
- --tn 1 \
-```
+
 ### Start Distillation
 - Hyperparamters for each distillation method are fixed to same values on each original paper
-- ex) dataset : cifar100, teacher network : wideresnet16_4, teacher index : 1,  student network : resnet32, student index : 1, index of the number of distillations: 1
+- ex) dataset : cifar100, teacher network : resnet110, teacher index : 1,  student network : resnet20, student index : 1, index of the number of distillations: 1
 ```
 python3 ./distill.py \
  --type cifar100 \
  --teacher wideresnet \
  --student resnet \
- --depth 16 \
- --wfactor 4 \
+ --depth 110 \
  --tn 1 \
- --sdepth 32 \
+ --sdepth 20 \
  --stn 1 \
  --distype KD
 ```
